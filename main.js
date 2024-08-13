@@ -16,7 +16,6 @@ const properties = [
     bedrooms: 2,
     address: 'Rua C, 789',
   },
-  // Adicione mais propriedades aqui
 ];
 
 function renderProperties(properties) {
@@ -37,10 +36,8 @@ function filterPropertiesByBedrooms(bedrooms) {
   });
 }
 
-// Insere os cards no DOM dentro do "carousel-container"
 document.getElementById('carousel-container').innerHTML = renderProperties(properties);
 
-// Exemplo de uso: Filtrar por número de quartos
 document.getElementById('filter-button').addEventListener('click', () => {
   const bedrooms = parseInt(document.getElementById('bedrooms-filter').value, 10);
   filterPropertiesByBedrooms(bedrooms);
