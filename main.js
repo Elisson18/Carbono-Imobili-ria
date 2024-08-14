@@ -28,7 +28,10 @@ function filterPropertiesByBedrooms(bedrooms) {
   allCards.forEach(card => {
     const bedroomText = card.querySelector('.card-info').innerText;
     const bedroomCount = parseInt(bedroomText.match(/Quartos: (\d+)/)[1], 10);
-    if (bedroomCount === bedrooms || bedrooms === 'all') {
+    
+    if (bedrooms === 'all' || isNaN(bedrooms)) {
+      card.style.display = 'block';
+    } else if (bedroomCount === bedrooms) {
       card.style.display = 'block';
     } else {
       card.style.display = 'none';
@@ -39,6 +42,7 @@ function filterPropertiesByBedrooms(bedrooms) {
 document.getElementById('carousel-container').innerHTML = renderProperties(properties);
 
 document.getElementById('filter-button').addEventListener('click', () => {
-  const bedrooms = parseInt(document.getElementById('bedrooms-filter').value, 10);
-  filterPropertiesByBedrooms(bedrooms);
+  const bedrooms = document.getElementById('bedrooms-filter').value;
+  filterPropertiesByBedrooms(bedrooms === 'all' ? 'all' : parseInt(bedrooms, 10));
 });
+
